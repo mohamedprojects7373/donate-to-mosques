@@ -7,81 +7,135 @@
   <meta name="keywords" content="تبرع, مسجد, صدقة جارية, بناء مساجد, تبرعات">
   <title>ساهم في بناء مسجد | صدقة جارية</title>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" as="style">
-  <link rel="preload" href="https://i.top4top.io/p_3465blx1d0.png" as="image">
+  <link rel="preload" href="assets/images/logo.png" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://i.top4top.io/p_3465blx1d0.png" type="image/png">
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <link rel="canonical" href="https://example.com" />
   <style>
     :root {
-      --main-color: #00534d;
-      --secondary-color: #009688;
-      --light-bg: #f0fdfa;
-      --text-color: #003c2f;
-      --hover-color: #00796b;
+      --main-color: #01665e;
+      --secondary-color: #028a7e;
+      --accent-color: #7ab8b0;
+      --light-bg: #f5fbfa;
+      --text-color: #1a3a37;
+      --hover-color: #015951;
+      --success-color: #2e7d32;
+      --warning-color: #d84315;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 12px rgba(0, 83, 77, 0.1);
+      --transition: all 0.3s ease;
     }
+    
     * {
       box-sizing: border-box;
       scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
+    
     body {
       font-family: 'Cairo', sans-serif;
-      margin: 0;
       background-color: var(--light-bg);
       color: var(--text-color);
       line-height: 1.8;
       animation: fadeIn 1s ease-in-out;
       font-size: 16px;
     }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    /* تحسينات الهيدر */
     header {
-      background: linear-gradient(135deg, var(--main-color), #00786d);
+      background: linear-gradient(135deg, var(--main-color), var(--secondary-color));
       color: white;
-      padding: 40px 20px 30px;
+      padding: 60px 20px 40px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    header img.logo {
-      max-height: 100px;
-      margin-bottom: 15px;
-      animation: fadeIn 1.5s ease-in-out;
-      width: auto;
+      box-shadow: var(--box-shadow);
+      position: relative;
+      overflow: hidden;
     }
     
-    /* أنماط القائمة المنسدلة */
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('assets/images/pattern.svg') repeat;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    
+    header img.logo {
+      max-height: 120px;
+      margin-bottom: 20px;
+      width: auto;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      transition: transform 0.5s ease;
+    }
+    
+    header img.logo:hover {
+      transform: scale(1.05);
+    }
+    
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+    
+    /* تحسينات القائمة */
     .nav-container {
       background: var(--secondary-color);
       padding: 10px;
-      position: relative;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      animation: fadeIn 1.3s ease-in-out;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     }
     
     .desktop-nav {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     
     .desktop-nav a {
       color: white;
       text-decoration: none;
       padding: 12px 24px;
-      border-radius: 8px;
-      background: #00a89e;
-      transition: all 0.3s ease;
+      border-radius: var(--border-radius);
+      background: rgba(255,255,255,0.15);
+      transition: var(--transition);
       font-weight: 600;
       flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .desktop-nav a:hover {
-      background-color: var(--hover-color);
+      background-color: rgba(255,255,255,0.25);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .desktop-nav a.active {
+      background-color: var(--hover-color);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
     
     .mobile-nav-btn {
@@ -90,14 +144,16 @@
       color: white;
       border: none;
       padding: 14px 20px;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       font-family: 'Cairo', sans-serif;
       font-weight: 600;
       font-size: 16px;
       cursor: pointer;
       width: 100%;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: var(--transition);
+      margin: 0 auto;
+      max-width: 300px;
     }
     
     .mobile-nav-btn:hover {
@@ -108,21 +164,25 @@
       display: none;
       flex-direction: column;
       background: white;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       overflow: hidden;
-      margin-top: 10px;
+      margin: 10px auto 0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       max-height: 0;
       transition: max-height 0.4s ease-out;
+      max-width: 300px;
     }
     
     .mobile-nav a {
       color: var(--text-color);
       text-decoration: none;
       padding: 14px 20px;
-      transition: all 0.3s;
+      transition: var(--transition);
       border-bottom: 1px solid #eee;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .mobile-nav a:hover {
@@ -137,9 +197,10 @@
       animation: fadeIn 0.4s ease-out;
     }
     
+    /* أقسام الصفحة */
     .section {
-      padding: 50px 20px;
-      max-width: 1000px;
+      padding: 60px 20px;
+      max-width: 1200px;
       margin: auto;
       animation: fadeIn 1.4s ease-in-out;
       opacity: 0;
@@ -154,144 +215,146 @@
     
     .section h2 {
       color: var(--main-color);
-      border-bottom: 3px solid var(--secondary-color);
+      border-bottom: 3px solid var(--accent-color);
       padding-bottom: 10px;
-      margin-bottom: 25px;
-      font-size: 28px;
+      margin-bottom: 30px;
+      font-size: 2rem;
       position: relative;
+      display: inline-block;
     }
+    
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      right: 0;
+      width: 50%;
+      height: 3px;
+      background: var(--secondary-color);
+    }
+    
     .section h3 {
       color: var(--main-color);
-      margin: 20px 0 10px;
+      margin: 25px 0 15px;
+      font-size: 1.5rem;
     }
+    
+    .section p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    
     .section ul {
-      padding-right: 15px;
+      padding-right: 20px;
+      margin-bottom: 20px;
     }
+    
     .section ul li {
       margin-bottom: 12px;
       list-style: inside square;
-    }
-    .donation-methods {
-      background: #e0fdf2;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      transition: 0.3s;
-    }
-    .donation-methods:hover {
-      transform: translateY(-4px);
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 14px;
-      margin-bottom: 18px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 16px;
-      font-family: 'Cairo', sans-serif;
-      transition: border 0.3s;
-    }
-    form input:focus, form textarea:focus {
-      border-color: var(--main-color);
-      outline: none;
-    }
-    form button {
-      background: var(--main-color);
-      color: white;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 17px;
-      transition: 0.3s;
-      font-family: 'Cairo', sans-serif;
-      font-weight: 600;
-    }
-    form button:hover {
-      background-color: var(--hover-color);
-      transform: scale(1.05);
-    }
-    iframe {
-      border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 800px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    footer {
-      background-color: #004438;
-      color: white;
-      text-align: center;
-      padding: 30px 10px;
-      margin-top: 50px;
-      font-size: 15px;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-    .donate-btn-floating {
-      position: fixed;
-      bottom: 25px;
-      left: 25px;
-      background: var(--main-color);
-      color: white;
-      padding: 12px 20px;
-      border-radius: 50px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s ease;
-      z-index: 999;
-      display: flex;
-      align-items: center;
+      font-size: 1.1rem;
     }
     
-    .donate-btn-floating::after {
-      content: '→';
-      margin-right: 8px;
-      transition: transform 0.3s;
-    }
-    
-    .donate-btn-floating:hover {
-      background: var(--hover-color);
-      transform: translateY(-3px);
-    }
-    
-    .donate-btn-floating:hover::after {
-      transform: translateX(5px);
+    /* بطاقات المشاريع */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
     }
     
     .project-card {
       background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .progress-bar {
-      height: 10px;
-      background: #e0e0e0;
-      border-radius: 5px;
-      margin: 15px 0;
+      border-radius: var(--border-radius);
       overflow: hidden;
+      box-shadow: var(--box-shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #e0e0e0;
     }
-    .progress {
-      height: 100%;
-      background: var(--secondary-color);
-      width: 45%;
-      border-radius: 5px;
-      transition: width 1s ease;
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,83,77,0.1);
+    }
+    
+    .project-header {
+      padding: 20px;
+      background: linear-gradient(to left, var(--main-color), var(--secondary-color));
+      color: white;
       position: relative;
+    }
+    
+    .project-header h3 {
+      color: white;
+      margin: 0;
+      font-size: 1.3rem;
+    }
+    
+    .status-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .status-badge.in-progress {
+      background: var(--warning-color);
+    }
+    
+    .status-badge.completed {
+      background: var(--success-color);
+    }
+    
+    .status-badge.fundraising {
+      background: #1565c0;
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .project-content {
+      padding: 20px;
+    }
+    
+    .project-description {
+      margin-bottom: 20px;
+      color: #555;
+    }
+    
+    .progress-container {
+      margin: 20px 0;
+    }
+    
+    .progress-text {
+      text-align: center;
+      margin-top: 5px;
+      font-weight: bold;
+      color: var(--main-color);
+    }
+    
+    .progress-bar {
+      height: 12px;
+      background: #e0e0e0;
+      border-radius: 6px;
       overflow: hidden;
     }
     
-    .progress::after {
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+      border-radius: 6px;
+      position: relative;
+      transition: width 1s ease;
+    }
+    
+    .progress-fill::after {
       content: '';
       position: absolute;
       top: 0;
@@ -307,246 +370,1181 @@
       100% { transform: translateX(100%); }
     }
     
-    .project-details {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
+    .funding-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+      text-align: center;
     }
+    
+    .detail {
+      background: var(--light-bg);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    
+    .detail .label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--main-color);
+      margin-bottom: 5px;
+    }
+    
+    .detail .value {
+      font-weight: bold;
+      color: var(--text-color);
+    }
+    
+    .donate-project-btn {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+      width: 100%;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .donate-project-btn:hover {
+      background: var(--hover-color);
+      transform: translateY(-2px);
+    }
+    
+    /* قسم التبرع */
+    .donation-section {
+      background: linear-gradient(to bottom, #e0f7fa, #e0f2f1);
+      border-radius: var(--border-radius);
+      padding: 40px;
+      margin: 40px 0;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .donation-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .method {
+      background: white;
+      padding: 20px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: var(--transition);
+    }
+    
+    .method:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .method h4 {
+      color: var(--main-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .method-icon {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .method-details {
+      margin-bottom: 15px;
+    }
+    
+    .copy-btn {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .copy-btn:hover {
+      background: var(--secondary-color);
+    }
+    
+    .copy-btn.copied {
+      background: var(--success-color);
+    }
+    
+    .qr-code {
+      margin-top: 15px;
+      text-align: center;
+    }
+    
+    .qr-code img {
+      max-width: 150px;
+      border: 1px solid #eee;
+      padding: 5px;
+      background: white;
+    }
+    
+    .donation-amounts {
+      margin: 30px 0;
+    }
+    
+    .amount-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .amount-buttons button {
+      background: white;
+      border: 2px solid var(--accent-color);
+      padding: 10px 20px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      color: var(--main-color);
+    }
+    
+    .amount-buttons button:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+    
+    .amount-buttons button.selected {
+      background: var(--main-color);
+      color: white;
+      border-color: var(--main-color);
+    }
+    
+    .amount-buttons input {
+      flex: 1;
+      min-width: 150px;
+      padding: 10px 15px;
+      border: 2px solid #ddd;
+      border-radius: var(--border-radius);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .amount-buttons input:focus {
+      outline: none;
+      border-color: var(--main-color);
+    }
+    
+    /* قسم الأسئلة الشائعة */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
     .faq-item {
       margin-bottom: 20px;
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
+    
     .faq-question {
       font-weight: 700;
       color: var(--main-color);
       cursor: pointer;
-      padding: 8px 0;
-      border-bottom: 1px dashed #ddd;
+      padding: 15px 20px;
+      background: var(--light-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
     }
     
-    .faq-item p {
+    .faq-question:hover {
+      background: #e0f2f1;
+    }
+    
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+    }
+    
+    .faq-question.active::after {
+      content: '-';
+    }
+    
+    .faq-answer {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease-out;
-      padding-right: 15px;
-      margin-top: 0;
+      padding: 0 20px;
     }
     
-    .faq-item p.show {
+    .faq-answer.show {
       max-height: 500px;
-      margin-top: 10px;
+      padding: 15px 20px;
+    }
+    
+    /* نموذج الاتصال */
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--main-color);
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--main-color);
+      box-shadow: 0 0 0 2px rgba(1, 102, 94, 0.2);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .submit-btn:hover {
+      background: var(--hover-color);
+      transform: translateY(-2px);
+    }
+    
+    .submit-btn .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* الفوتر */
+    footer {
+      background: linear-gradient(to right, var(--main-color), var(--secondary-color));
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      font-size: 16px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: right;
+    }
+    
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      right: 0;
+      width: 50%;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+      padding: 5px 0;
+    }
+    
+    .footer-column ul li a:hover {
+      color: white;
+      transform: translateX(-5px);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      color: white;
+      background: rgba(255,255,255,0.1);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    /* زر التبرع العائم */
+    .donate-btn-floating {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: linear-gradient(to right, var(--main-color), var(--secondary-color));
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      font-weight: bold;
+      text-decoration: none;
+      transition: var(--transition);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+    }
+    
+    .donate-btn-floating::after {
+      content: '←';
+      transition: transform 0.3s;
+    }
+    
+    .donate-btn-floating:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    .donate-btn-floating:hover::after {
+      transform: translateX(-5px);
+    }
+    
+    /* التأثيرات والرسوم المتحركة */
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
     
     /* تحسينات للجوال */
-    @media (max-width: 768px) {
-      header img.logo { max-height: 70px; }
-      .section h2 { font-size: 24px; }
-      .section { padding: 30px 15px; }
-      header { padding: 30px 15px; }
-      .donate-btn-floating {
-        padding: 10px 16px;
-        font-size: 14px;
-        bottom: 15px;
-        left: 15px;
+    @media (max-width: 992px) {
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
-      iframe { height: 250px; }
-      .donation-methods { padding: 20px 15px; }
       
-      .desktop-nav { display: none; }
-      .mobile-nav-btn { display: block; }
+      .donation-methods {
+        grid-template-columns: 1fr;
+      }
     }
-
-    @media (max-width: 480px) {
-      .project-details { flex-direction: column; }
-      .section h2 { font-size: 22px; }
-      form button { width: 100%; }
-      .mobile-nav a { padding: 12px 20px; }
-      
-      .donate-btn-floating {
-        bottom: 10px;
-        left: 10px;
-        padding: 10px 15px;
-        font-size: 14px;
-      }
-      
-      iframe {
-        height: 200px;
-      }
-      
-      body {
-        font-size: 15px;
-        line-height: 1.6;
-      }
-      
+    
+    @media (max-width: 768px) {
       header {
-        padding: 25px 15px;
+        padding: 40px 15px 30px;
       }
       
       header h1 {
-        font-size: 24px;
+        font-size: 2rem;
+      }
+      
+      header p {
+        font-size: 1rem;
+      }
+      
+      .section {
+        padding: 40px 15px;
+      }
+      
+      .section h2 {
+        font-size: 1.8rem;
+      }
+      
+      .project-card {
+        margin-bottom: 30px;
+      }
+      
+      .donate-btn-floating {
+        bottom: 20px;
+        left: 20px;
+        padding: 12px 20px;
+        font-size: 1rem;
+      }
+      
+      .desktop-nav {
+        display: none;
+      }
+      
+      .mobile-nav-btn {
+        display: block;
+      }
+      
+      .donation-section {
+        padding: 30px 20px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .footer-column h3::after {
+        right: 50%;
+        transform: translateX(50%);
+      }
+      
+      .social-links {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header img.logo {
+        max-height: 80px;
+      }
+      
+      .section h2 {
+        font-size: 1.5rem;
+      }
+      
+      .funding-details {
+        grid-template-columns: 1fr;
+      }
+      
+      .donate-btn-floating {
+        bottom: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+      
+      .contact-form {
+        padding: 20px 15px;
       }
     }
   </style>
 </head>
 <body>
-  <a href="#donate" class="donate-btn-floating">تبرع الآن</a>
+  <a href="#donate" class="donate-btn-floating pulse">
+    <span>تبرع الآن</span>
+  </a>
 
   <header>
     <picture>
-      <source srcset="https://i.top4top.io/p_3465blx1d0.png" type="image/webp">
-      <img src="https://i.top4top.io/p_3465blx1d0.png" alt="شعار مبادرة بناء المساجد" class="logo">
+      <source srcset="assets/images/logo.webp" type="image/webp">
+      <img src="assets/images/logo.png" alt="شعار مبادرة بناء المساجد" class="logo" loading="eager">
     </picture>
     <h1>ساهم في بناء مسجد</h1>
-    <p>ساهم معنا في بناء بيوت الله، فكل مساهمة تُعد صدقة جارية</p>
+    <p>ساهم معنا في بناء بيوت الله، فكل مساهمة تُعد صدقة جارية تثري ميزان حسناتك</p>
   </header>
 
   <div class="nav-container">
     <!-- القائمة العادية للشاشات الكبيرة -->
     <nav class="desktop-nav">
-      <a href="#home">الرئيسية</a>
-      <a href="#projects">المشاريع</a>
-      <a href="#donate">تبرع الآن</a>
-      <a href="#about">من نحن</a>
-      <a href="#contact">تواصل معنا</a>
+      <a href="#home" class="active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+        </svg>
+        الرئيسية
+      </a>
+      <a href="#projects">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z"/>
+          <path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"/>
+        </svg>
+        المشاريع
+      </a>
+      <a href="#donate">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+          <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+          <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+          <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+        </svg>
+        تبرع الآن
+      </a>
+      <a href="#about">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </svg>
+        من نحن
+      </a>
+      <a href="#contact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+        </svg>
+        تواصل معنا
+      </a>
     </nav>
     
     <!-- القائمة المنسدلة للجوال -->
-    <button class="mobile-nav-btn" id="mobileNavBtn" aria-expanded="false" aria-controls="mobileNav">القائمة ☰</button>
+    <button class="mobile-nav-btn" id="mobileNavBtn" aria-expanded="false" aria-controls="mobileNav">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+      القائمة
+    </button>
     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
-      <a href="#home">الرئيسية</a>
-      <a href="#projects">المشاريع</a>
-      <a href="#donate">تبرع الآن</a>
-      <a href="#about">من نحن</a>
-      <a href="#contact">تواصل معنا</a>
+      <a href="#home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+        </svg>
+        الرئيسية
+      </a>
+      <a href="#projects">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z"/>
+          <path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"/>
+        </svg>
+        المشاريع
+      </a>
+      <a href="#donate">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+          <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+          <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+          <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+        </svg>
+        تبرع الآن
+      </a>
+      <a href="#about">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </svg>
+        من نحن
+      </a>
+      <a href="#contact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+        </svg>
+        تواصل معنا
+      </a>
     </nav>
   </div>
 
   <main>
     <div class="section" id="home">
       <h2>أهلاً بك في مبادرة بناء المساجد</h2>
-      <p>نسعى لتشييد المساجد في القرى والمناطق المحتاجة. ساهم معنا ولو بالقليل، فإنها صدقة جارية تعود عليك بالخير.</p>
-      <iframe width="100%" height="400" src="https://www.youtube.com/embed/somevideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="فيديو تعريفي عن المبادرة"></iframe>
+      <p>نسعى لتشييد المساجد في القرى والمناطق المحتاجة. ساهم معنا ولو بالقليل، فإنها صدقة جارية تعود عليك بالخير في الدنيا والآخرة.</p>
+      
+      <div class="video-container">
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/somevideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="فيديو تعريفي عن المبادرة"></iframe>
+      </div>
+      
+      <div class="stats-container" style="margin-top: 40px;">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" data-count="24">0</div>
+            <div class="stat-label">مسجد تم بناؤها</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="15">0</div>
+            <div class="stat-label">مشروع جاري</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="8500">0</div>
+            <div class="stat-label">متبرع</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-count="12">0</div>
+            <div class="stat-label">محافظة</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="section" id="projects">
       <h2>المشاريع الجارية</h2>
+      <p>إليكم أحدث المشاريع التي نعمل عليها حالياً، يمكنكم اختيار أي مشروع للتبرع له مباشرة.</p>
       
-      <div class="project-card">
-        <h3>مسجد النور – المنيا – المرحلة الثانية</h3>
-        <div class="progress-bar">
-          <div class="progress" style="width: 65%"></div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <h3>مسجد النور – المنيا</h3>
+            <span class="status-badge in-progress">جاري التنفيذ</span>
+          </div>
+          <img src="assets/images/project1.jpg" alt="صورة لمشروع مسجد النور تحت الإنشاء" class="project-image" loading="lazy">
+          <div class="project-content">
+            <p class="project-description">مسجد يتسع لـ 500 مصلٍ، يخدم قرية النور بالمنيا التي تفتقر لوجود مسجد مناسب.</p>
+            
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+              <div class="progress-text">65% مكتمل</div>
+            </div>
+            
+            <div class="funding-details">
+              <div class="detail">
+                <span class="label">المطلوب:</span>
+                <span class="value">500,000 ج</span>
+              </div>
+              <div class="detail">
+                <span class="label">المحصل:</span>
+                <span class="value">325,000 ج</span>
+              </div>
+              <div class="detail">
+                <span class="label">المتبقي:</span>
+                <span class="value">175,000 ج</span>
+              </div>
+            </div>
+            
+            <button class="donate-project-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+              </svg>
+              تبرع لهذا المشروع
+            </button>
+          </div>
         </div>
-        <div class="project-details">
-          <span>المبلغ المطلوب: 500,000 جنيه</span>
-          <span>المجموع المحصل: 325,000 جنيه</span>
+        
+        <div class="project-card">
+          <div class="project-header">
+            <h3>مسجد السلام – أسيوط</h3>
+            <span class="status-badge in-progress">جاري التنفيذ</span>
+          </div>
+          <img src="assets/images/project2.jpg" alt="صورة لمشروع مسجد السلام تحت الإنشاء" class="project-image" loading="lazy">
+          <div class="project-content">
+            <p class="project-description">مسجد كبير يتسع لـ 800 مصلٍ بمنطقة أسيوط الجديدة التي تشهد توسعاً عمرانياً كبيراً.</p>
+            
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 45%"></div>
+              </div>
+              <div class="progress-text">45% مكتمل</div>
+            </div>
+            
+            <div class="funding-details">
+              <div class="detail">
+                <span class="label">المطلوب:</span>
+                <span class="value">750,000 ج</span>
+              </div>
+              <div class="detail">
+                <span class="label">المحصل:</span>
+                <span class="value">337,500 ج</span>
+              </div>
+              <div class="detail">
+                <span class="label">المتبقي:</span>
+                <span class="value">412,500 ج</span>
+              </div>
+            </div>
+            
+            <button class="donate-project-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+              </svg>
+              تبرع لهذا المشروع
+            </button>
+          </div>
         </div>
-        <img src="https://via.placeholder.com/800x400?text=صورة+المشروع" alt="صورة لمشروع مسجد النور تحت الإنشاء" style="width:100%; border-radius:8px; margin-top:15px;" loading="lazy">
+        
+        <div class="project-card">
+          <div class="project-header">
+            <h3>مسجد الهدي – الفيوم</h3>
+            <span class="status-badge fundraising">قيد التمويل</span>
+          </div>
+          <img src="assets/images/project3.jpg" alt="صورة لمشروع مسجد الهدي تحت الإنشاء" class="project-image" loading="lazy">
+          <div class="project-content">
+            <p class="project-description">مسجد يخدم منطقة نائية في الفيوم، سيكون أول مسجد في المنطقة وسيتسع لـ 300 مصلٍ.</p>
+            
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 30%"></div>
+              </div>
+              <div class="progress-text">30% مكتمل</div>
+            </div>
+            
+            <div class="funding-details">
+              <div class="detail">
+                <span class="label">المطلوب:</span>
+                <span class="value">600,000 ج</span>
+              </div>
+              <div class="detail">
+                <span class="label">المحصل:</span>
+                <span class="value">180,000 ج</span>
+              </div>
+              <div class="detail">
+                <span class="label">المتبقي:</span>
+                <span class="value">420,000 ج</span>
+              </div>
+            </div>
+            
+            <button class="donate-project-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+              </svg>
+              تبرع لهذا المشروع
+            </button>
+          </div>
+        </div>
       </div>
       
-      <div class="project-card">
-        <h3>مسجد السلام – أسيوط – قيد التشييد</h3>
-        <div class="progress-bar">
-          <div class="progress" style="width: 45%"></div>
-        </div>
-        <div class="project-details">
-          <span>المبلغ المطلوب: 750,000 جنيه</span>
-          <span>المجموع المحصل: 337,500 جنيه</span>
-        </div>
-        <img src="https://via.placeholder.com/800x400?text=صورة+المشروع" alt="صورة لمشروع مسجد السلام تحت الإنشاء" style="width:100%; border-radius:8px; margin-top:15px;" loading="lazy">
-      </div>
-      
-      <div class="project-card">
-        <h3>مسجد الهدي – الفيوم – التبرعات مفتوحة</h3>
-        <div class="progress-bar">
-          <div class="progress" style="width: 30%"></div>
-        </div>
-        <div class="project-details">
-          <span>المبلغ المطلوب: 600,000 جنيه</span>
-          <span>المجموع المحصل: 180,000 جنيه</span>
-        </div>
-        <img src="https://via.placeholder.com/800x400?text=صورة+المشروع" alt="صورة لمشروع مسجد الهدي تحت الإنشاء" style="width:100%; border-radius:8px; margin-top:15px;" loading="lazy">
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="#" class="view-all-btn" style="background: var(--accent-color); color: white; padding: 12px 24px; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+          </svg>
+          عرض جميع المشاريع
+        </a>
       </div>
     </div>
 
-    <div class="section donation-methods" id="donate">
+    <div class="section donation-section" id="donate">
       <h2>طرق التبرع</h2>
+      <p>اختر طريقة التبرع التي تناسبك وساهم معنا في بناء بيوت الله. كل التبرعات موثقة ومعتمدة.</p>
       
-      <h3>Instapay:</h3>
-      <p>تحويل مباشر على الرقم: <strong>01234567890</strong></p>
+      <div class="donation-methods">
+        <div class="method">
+          <h4>
+            <img src="assets/icons/instapay.png" alt="Instapay" class="method-icon">
+            Instapay
+          </h4>
+          <div class="method-details">
+            <p>تحويل مباشر على الرقم:</p>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+              <strong style="font-size: 1.2rem;">01234567890</strong>
+              <button class="copy-btn" data-text="01234567890">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+                نسخ
+              </button>
+            </div>
+          </div>
+          <div class="qr-code">
+            <img src="assets/images/instapay-qr.png" alt="QR Code Instapay">
+          </div>
+        </div>
+        
+        <div class="method">
+          <h4>
+            <img src="assets/icons/vodafone.png" alt="Vodafone Cash" class="method-icon">
+            فودافون كاش
+          </h4>
+          <div class="method-details">
+            <p>رقم المحفظة:</p>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+              <strong style="font-size: 1.2rem;">01012345678</strong>
+              <button class="copy-btn" data-text="01012345678">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+                نسخ
+              </button>
+            </div>
+          </div>
+          <div class="qr-code">
+            <img src="assets/images/vodafone-qr.png" alt="QR Code Vodafone Cash">
+          </div>
+        </div>
+        
+        <div class="method">
+          <h4>
+            <img src="assets/icons/bank.png" alt="Bank Transfer" class="method-icon">
+            الحساب البنكي
+          </h4>
+          <div class="method-details">
+            <p>بنك مصر - رقم الحساب:</p>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+              <strong style="font-size: 1.2rem;">123-456-789-000</strong>
+              <button class="copy-btn" data-text="123-456-789-000">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+                نسخ
+              </button>
+            </div>
+            <p style="margin-top: 10px;">اسم الحساب: <strong>حساب بناء المساجد</strong></p>
+            <p>الفرع: <strong>المعادي</strong></p>
+          </div>
+        </div>
+      </div>
       
-      <h3>فودافون كاش:</h3>
-      <p>رقم المحفظة: <strong>01012345678</strong></p>
+      <div class="donation-amounts">
+        <h3>اختر مبلغ التبرع:</h3>
+        <div class="amount-buttons">
+          <button data-amount="100">100 ج</button>
+          <button data-amount="500">500 ج</button>
+          <button data-amount="1000">1000 ج</button>
+          <button data-amount="5000">5000 ج</button>
+          <input type="number" placeholder="مبلغ آخر" id="customAmount">
+        </div>
+      </div>
       
-      <h3>الحساب البنكي:</h3>
-      <p>بنك مصر - رقم الحساب: <strong>123-456-789-000</strong></p>
-      <p>اسم الحساب: <strong>حساب بناء المساجد</strong></p>
-      
-      <h3>التبرع الإلكتروني:</h3>
-      <button id="donateBtn" style="background: #28a745; margin-top: 10px;">التبرع عبر البطاقة الإئتمانية</button>
+      <div style="text-align: center; margin-top: 30px;">
+        <button id="donateBtn" style="background: var(--success-color); color: white; border: none; padding: 15px 30px; border-radius: var(--border-radius); cursor: pointer; font-size: 1.1rem; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: var(--transition);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+            <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+          </svg>
+          التبرع عبر البطاقة الإئتمانية
+        </button>
+      </div>
     </div>
 
     <div class="section" id="about">
       <h2>من نحن</h2>
-      <p>نحن مجموعة متطوعين نعمل مع جمعيات رسمية مرخصة، هدفنا هو تسهيل التبرعات لبناء المساجد وتوصيلها مباشرة للمشاريع على الأرض.</p>
+      <p>نحن مجموعة من المتطوعين الذين يؤمنون بأهمية بناء بيوت الله في كل مكان، نعمل تحت مظلة جمعيات خيرية مرخصة وبرعاية وزارة الأوقاف المصرية.</p>
       
-      <h3>شركاؤنا:</h3>
-      <ul>
-        <li>جمعية الدعوة الإسلامية</li>
-        <li>وزارة الأوقاف المصرية</li>
-        <li>هيئة الأعمال الخيرية</li>
-      </ul>
+      <div style="display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+          <h3>رؤيتنا</h3>
+          <p>نسعى لإنشاء مساجد في كل قرية وحي يحتاج إلى بيت لله، حيث تكون هذه المساجد مراكز إشعاع تنشر الهدى والخير في المجتمع.</p>
+        </div>
+        
+        <div style="flex: 1; min-width: 300px;">
+          <h3>رسالتنا</h3>
+          <p>تسهيل عملية التبرع لبناء المساجد وضمان وصول التبرعات للمشاريع المحددة مع الشفافية الكاملة في كل خطوة.</p>
+        </div>
+      </div>
+      
+      <h3 style="margin-top: 40px;">شركاؤنا:</h3>
+      <div class="partners-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+        <div style="background: white; padding: 20px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; box-shadow: var(--box-shadow);">
+          <img src="assets/images/partner1.png" alt="جمعية الدعوة الإسلامية" style="max-height: 80px;">
+        </div>
+        <div style="background: white; padding: 20px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; box-shadow: var(--box-shadow);">
+          <img src="assets/images/partner2.png" alt="وزارة الأوقاف المصرية" style="max-height: 80px;">
+        </div>
+        <div style="background: white; padding: 20px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; box-shadow: var(--box-shadow);">
+          <img src="assets/images/partner3.png" alt="هيئة الأعمال الخيرية" style="max-height: 80px;">
+        </div>
+      </div>
+      
+      <h3 style="margin-top: 40px;">المساجد التي تم بناؤها</h3>
+      <div class="completed-mosques" style="margin-top: 20px;">
+        <div class="mosque-slider" style="display: flex; gap: 20px; overflow-x: auto; padding: 10px 0;">
+          <div style="min-width: 250px; background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+            <img src="assets/images/mosque1.jpg" alt="مسجد الرحمن" style="width: 100%; height: 150px; object-fit: cover;">
+            <div style="padding: 15px;">
+              <h4 style="margin: 0 0 10px; color: var(--main-color);">مسجد الرحمن - القاهرة</h4>
+              <p style="font-size: 0.9rem; color: #555;">تم الانتهاء: يناير 2023</p>
+            </div>
+          </div>
+          <div style="min-width: 250px; background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+            <img src="assets/images/mosque2.jpg" alt="مسجد الفرقان" style="width: 100%; height: 150px; object-fit: cover;">
+            <div style="padding: 15px;">
+              <h4 style="margin: 0 0 10px; color: var(--main-color);">مسجد الفرقان - الجيزة</h4>
+              <p style="font-size: 0.9rem; color: #555;">تم الانتهاء: أغسطس 2022</p>
+            </div>
+          </div>
+          <div style="min-width: 250px; background: white; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--box-shadow);">
+            <img src="assets/images/mosque3.jpg" alt="مسجد النور" style="width: 100%; height: 150px; object-fit: cover;">
+            <div style="padding: 15px;">
+              <h4 style="margin: 0 0 10px; color: var(--main-color);">مسجد النور - الإسكندرية</h4>
+              <p style="font-size: 0.9rem; color: #555;">تم الانتهاء: مايو 2022</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="section" id="faq">
       <h2>الأسئلة الشائعة</h2>
+      <p>إجابات على أكثر الأسئلة التي تردنا من المتبرعين والمهتمين بمشاريعنا.</p>
       
-      <div class="faq-item">
-        <div class="faq-question">كيف أتأكد أن تبرعي سيصل للمشروع؟</div>
-        <p>نقدم تقارير شهرية مصورة عن تقدم العمل، مع كشوفات مالية موثقة من الجمعيات الشركاء.</p>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">هل يمكنني التبرع لمسجد معين؟</div>
-        <p>نعم، يمكنك تحديد المشروع الذي ترغب في دعمه عند التبرع.</p>
-      </div>
-      
-      <div class="faq-item">
-        <div class="faq-question">هل هناك حد أدنى للتبرع؟</div>
-        <p>لا يوجد حد أدنى، فكل تبرع مهما كان صغيراً له قيمته وأجره.</p>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">كيف أتأكد أن تبرعي سيصل للمشروع؟</div>
+          <div class="faq-answer">
+            <p>نحن نقدم تقارير شهرية مفصلة مصورة عن تقدم العمل في كل مشروع، مع كشوفات مالية موثقة من الجمعيات الشركاء. يمكنك أيضاً زيارة مواقع المشاريع لمشاهدة التقدم بنفسك.</p>
+            <p>كل تبرع يتم رصده في نظامنا ويحصل المتبرع على إيصال إلكتروني فور إتمام التبرع.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">هل يمكنني التبرع لمسجد معين؟</div>
+          <div class="faq-answer">
+            <p>نعم، يمكنك تحديد المشروع الذي ترغب في دعمه عند التبرع. كما يمكنك تخصيص التبرع لجزء معين من المشروع (مثل القبة، المنارة، تجهيزات المسجد الداخلية).</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">هل هناك حد أدنى للتبرع؟</div>
+          <div class="faq-answer">
+            <p>لا يوجد حد أدنى للتبرع، فكل تبرع مهما كان صغيراً له قيمته وأجره. كما قال رسول الله صلى الله عليه وسلم: "اتقوا النار ولو بشق تمرة".</p>
+            <p>ومع ذلك، إذا رغبت في تسمية جزء من المسجد (مثل مئذنة أو باب أو غرفة وضوء) فهناك حد أدنى لمثل هذه التبرعات المخصصة.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">كيف يتم اختيار مواقع المساجد؟</div>
+          <div class="faq-answer">
+            <p>يتم اختيار المواقع بناءً على عدة معايير:</p>
+            <ul>
+              <li>المناطق التي تفتقر لوجود مساجد</li>
+              <li>الكثافة السكانية</li>
+              <li>بعد المسافة عن أقرب مسجد</li>
+              <li>توصيات من وزارة الأوقاف والجمعيات الشركاء</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">هل يمكنني الحصول على إعفاء ضريبي على تبرعاتي؟</div>
+          <div class="faq-answer">
+            <p>نعم، جميع تبرعاتك مؤهلة للحصول على إعفاء ضريبي وفقاً لقانون التبرعات في مصر. سنزودك بالإيصالات الرسمية التي يمكنك استخدامها لهذا الغرض.</p>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="section" id="contact">
       <h2>تواصل معنا</h2>
-      <form id="contactForm">
-        <label>الاسم:</label>
-        <input type="text" name="name" placeholder="ادخل اسمك" required>
-        
-        <label>البريد الإلكتروني:</label>
-        <input type="email" name="email" placeholder="ادخل بريدك الإلكتروني">
-        
-        <label>رقم الهاتف:</label>
-        <input type="tel" name="phone" pattern="[0-9]{11}" placeholder="01XXXXXXXXX" required>
-        
-        <label>الرسالة:</label>
-        <textarea name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
-        
-        <div class="g-recaptcha" data-sitekey="your_site_key"></div>
-        
-        <button type="submit" id="submitBtn">
-          <span id="submitText">إرسال</span>
-          <span id="loadingSpinner" style="display:none;">جاري الإرسال...</span>
-        </button>
-      </form>
+      <p>لديك استفسار أو اقتراح؟ لا تتردد في مراسلتنا وسنكون سعداء بالرد عليك في أقرب وقت.</p>
+      
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">الاسم الكامل:</label>
+            <input type="text" id="name" name="name" placeholder="ادخل اسمك الكامل" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" placeholder="ادخل بريدك الإلكتروني">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">رقم الهاتف:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="01XXXXXXXXX" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">موضوع الرسالة:</label>
+            <select id="subject" name="subject" required>
+              <option value="">اختر موضوع الرسالة</option>
+              <option value="donation">استفسار عن التبرعات</option>
+              <option value="project">استفسار عن مشروع</option>
+              <option value="volunteer">التطوع معنا</option>
+              <option value="other">موضوع آخر</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">الرسالة:</label>
+            <textarea id="message" name="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span id="submitText">إرسال الرسالة</span>
+            <span class="spinner" id="loadingSpinner"></span>
+          </button>
+        </form>
+      </div>
+      
+      <div style="margin-top: 40px; background: white; padding: 30px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+        <h3 style="margin-top: 0; color: var(--main-color);">معلومات الاتصال</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--main-color)" viewBox="0 0 16 16">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+            </svg>
+            <div>
+              <h4 style="margin: 0 0 5px; color: var(--main-color);">الهاتف</h4>
+              <p style="margin: 0;">01012345678</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--main-color)" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+            </svg>
+            <div>
+              <h4 style="margin: 0 0 5px; color: var(--main-color);">البريد الإلكتروني</h4>
+              <p style="margin: 0;">info@example.com</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--main-color)" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+            </svg>
+            <div>
+              <h4 style="margin: 0 0 5px; color: var(--main-color);">العنوان</h4>
+              <p style="margin: 0;">123 شارع المساجد، المعادي، القاهرة</p>
+            </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--main-color)" viewBox="0 0 16 16">
+              <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+            </svg>
+            <div>
+              <h4 style="margin: 0 0 5px; color: var(--main-color);">ساعات العمل</h4>
+              <p style="margin: 0;">من الأحد إلى الخميس: 9 ص - 5 م</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 جميع الحقوق محفوظة - ساهم في بناء مسجد</p>
-    <p>تابعنا على: 
-      <a href="https://facebook.com/yourpage" style="color: #fff;">فيسبوك</a> | 
-      <a href="https://twitter.com/yourpage" style="color: #fff;">تويتر</a> | 
-      <a href="https://instagram.com/yourpage" style="color: #fff;">إنستجرام</a>
-    </p>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>عن المبادرة</h3>
+        <p>مبادرة خيرية تهدف إلى بناء المساجد في المناطق المحتاجة، تحت إشراف وزارة الأوقاف المصرية والجمعيات الشركاء.</p>
+        <div class="social-links">
+          <a href="https://facebook.com/yourpage" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+            </svg>
+          </a>
+          <a href="https://twitter.com/yourpage" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+            </svg>
+          </a>
+          <a href="https://instagram.com/yourpage" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com/yourpage" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>روابط سريعة</h3>
+        <ul>
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#projects">المشاريع</a></li>
+          <li><a href="#donate">طرق التبرع</a></li>
+          <li><a href="#about">من نحن</a></li>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>تواصل معنا</h3>
+        <ul>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-left: 5px;">
+              <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+            </svg>
+            info@example.com
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-left: 5px;">
+              <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+            </svg>
+            01012345678
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-left: 5px;">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+            </svg>
+            123 شارع المساجد، المعادي، القاهرة
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>© 2025 جميع الحقوق محفوظة - ساهم في بناء مسجد</p>
+      <p>تصميم وبرمجة: فريق المبادرة</p>
+    </div>
   </footer>
 
   <script type="application/ld+json">
@@ -556,12 +1554,33 @@
     "name": "ساهم في بناء مسجد",
     "description": "مبادرة لبناء المساجد في المناطق المحتاجة",
     "url": "https://example.com",
-    "logo": "https://i.top4top.io/p_3465blx1d0.png",
+    "logo": "https://example.com/assets/images/logo.png",
     "sameAs": [
       "https://facebook.com/yourpage",
       "https://twitter.com/yourpage",
-      "https://instagram.com/yourpage"
-    ]
+      "https://instagram.com/yourpage",
+      "https://youtube.com/yourpage"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+201012345678",
+      "contactType": "customer service",
+      "email": "info@example.com",
+      "areaServed": "EG",
+      "availableLanguage": "ar"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 شارع المساجد",
+      "addressLocality": "المعادي",
+      "addressRegion": "القاهرة",
+      "postalCode": "12345",
+      "addressCountry": "EG"
+    },
+    "funder": {
+      "@type": "Organization",
+      "name": "وزارة الأوقاف المصرية"
+    }
   }
   </script>
 
@@ -577,9 +1596,19 @@
       
       // تغيير الأيقونة
       if (expanded) {
-        mobileNavBtn.innerHTML = 'إغلاق ✕';
+        mobileNavBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+          </svg>
+          إغلاق
+        `;
       } else {
-        mobileNavBtn.innerHTML = 'القائمة ☰';
+        mobileNavBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+          القائمة
+        `;
       }
     });
     
@@ -587,7 +1616,12 @@
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileNav.classList.remove('active');
-        mobileNavBtn.innerHTML = 'القائمة ☰';
+        mobileNavBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+          القائمة
+        `;
         mobileNavBtn.setAttribute('aria-expanded', 'false');
         mobileNav.setAttribute('aria-hidden', 'true');
       });
@@ -597,7 +1631,12 @@
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.nav-container') && mobileNav.classList.contains('active')) {
         mobileNav.classList.remove('active');
-        mobileNavBtn.innerHTML = 'القائمة ☰';
+        mobileNavBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+          القائمة
+        `;
         mobileNavBtn.setAttribute('aria-expanded', 'false');
         mobileNav.setAttribute('aria-hidden', 'true');
       }
@@ -608,8 +1647,50 @@
       question.addEventListener('click', () => {
         const answer = question.nextElementSibling;
         answer.classList.toggle('show');
-        question.style.borderBottom = answer.classList.contains('show') ? 'none' : '1px dashed #ddd';
+        question.classList.toggle('active');
       });
+    });
+    
+    // نسخ أرقام التبرع
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const text = this.getAttribute('data-text');
+        navigator.clipboard.writeText(text).then(() => {
+          this.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+            </svg>
+            تم النسخ
+          `;
+          this.classList.add('copied');
+          
+          setTimeout(() => {
+            this.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+              </svg>
+              نسخ
+            `;
+            this.classList.remove('copied');
+          }, 2000);
+        });
+      });
+    });
+    
+    // اختيار مبلغ التبرع
+    document.querySelectorAll('.amount-buttons button').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.amount-buttons button').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+        document.getElementById('customAmount').value = '';
+      });
+    });
+    
+    document.getElementById('customAmount').addEventListener('input', function() {
+      document.querySelectorAll('.amount-buttons button').forEach(b => b.classList.remove('selected'));
     });
     
     // إدارة إرسال النموذج
@@ -617,7 +1698,7 @@
       e.preventDefault();
       
       // التحقق من reCAPTCHA
-      if (grecaptcha.getResponse() === '') {
+      if (typeof grecaptcha !== 'undefined' && grecaptcha.getResponse() === '') {
         alert('الرجاء إكمال التحقق من أنك لست روبوت');
         return;
       }
@@ -627,26 +1708,71 @@
       const loadingSpinner = document.getElementById('loadingSpinner');
       
       submitBtn.disabled = true;
-      submitText.style.display = 'none';
-      loadingSpinner.style.display = 'inline';
+      submitText.textContent = 'جاري الإرسال...';
+      loadingSpinner.style.display = 'inline-block';
       
       // محاكاة إرسال البيانات
       setTimeout(() => {
         alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
         submitBtn.disabled = false;
-        submitText.style.display = 'inline';
+        submitText.textContent = 'إرسال الرسالة';
         loadingSpinner.style.display = 'none';
         this.reset();
-        grecaptcha.reset();
+        if (typeof grecaptcha !== 'undefined') {
+          grecaptcha.reset();
+        }
       }, 1500);
     });
     
     // زر التبرع الإلكتروني
     document.getElementById('donateBtn').addEventListener('click', function() {
-      alert('سيتم توجيهك إلى صفحة الدفع الآمن لاستكمال التبرع');
+      const selectedAmount = document.querySelector('.amount-buttons button.selected')?.getAttribute('data-amount');
+      const customAmount = document.getElementById('customAmount').value;
+      const amount = customAmount || selectedAmount || '';
+      
+      if (amount) {
+        alert(`سيتم توجيهك إلى صفحة الدفع الآمن للمبلغ: ${amount} جنيهاً`);
+      } else {
+        alert('سيتم توجيهك إلى صفحة الدفع الآمن لاستكمال التبرع');
+      }
+      
       // هنا يمكنك إضافة توجيه إلى صفحة الدفع الفعلية
-      // window.location.href = "https://payment-gateway.com";
+      // window.location.href = `https://payment-gateway.com?amount=${amount}`;
     });
+    
+    // ظهور الأقسام عند التمرير
+    const sections = document.querySelectorAll('.section');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+      sectionObserver.observe(section);
+    });
+    
+    // عدادات الإحصاءات
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number');
+      const speed = 200;
+      
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-count');
+        const count = +counter.innerText;
+        const increment = target / speed;
+        
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(animateCounters, 1);
+        } else {
+          counter.innerText = target;
+        }
+      });
+    }
     
     // تحميل الصور عند الظهور في الشاشة
     const lazyLoad = () => {
@@ -666,26 +1792,41 @@
       images.forEach(img => observer.observe(img));
     };
     
-    // ظهور الأقسام عند التمرير
-    const sections = document.querySelectorAll('.section');
-    
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    sections.forEach(section => {
-      sectionObserver.observe(section);
-    });
-    
     document.addEventListener('DOMContentLoaded', () => {
       lazyLoad();
-      setTimeout(() => {
-        document.body.style.opacity = '1';
-      }, 100);
+      
+      // بدء عدادات الإحصاءات عند ظهورها
+      const statsSection = document.querySelector('.stats-container');
+      const statsObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(statsSection);
+        }
+      });
+      
+      if (statsSection) {
+        statsObserver.observe(statsSection);
+      }
+      
+      // إضافة active للقائمة عند التمرير
+      window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        
+        document.querySelectorAll('.section').forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            document.querySelectorAll('.desktop-nav a, .mobile-nav a').forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+              }
+            });
+          }
+        });
+      });
     });
     
     // Google Analytics
