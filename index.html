@@ -59,6 +59,91 @@
       
       
       
+      
+    .stats-section {
+  background: linear-gradient(135deg, #01665e, #028a7e);
+  padding: 40px 20px;
+  border-radius: var(--border-radius);
+  margin: 40px 0;
+  color: white;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+
+.stats-section h3 {
+  color: white;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.stats-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px 15px;
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+} 
+      
+      
+      
+      
+      
     :root {
       --main-color: #01665e;
       --secondary-color: #028a7e;
@@ -1063,24 +1148,31 @@
         <iframe width="100%" height="450" src="https://www.youtube.com/embed/somevideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="فيديو تعريفي عن المبادرة"></iframe>
       </div>
       
-      <div class="stats-container" style="margin-top: 40px;">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number" data-count="24">0</div>
-            <div class="stat-label">مسجد تم بناؤها</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="15">0</div>
-            <div class="stat-label">مشروع جاري</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="8500">0</div>
-            <div class="stat-label">متبرع</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-count="12">0</div>
-            <div class="stat-label">محافظة</div>
-          </div>
+      <div class="stats-section">
+  <h3>إنجازاتنا بالأرقام</h3>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number" data-count="24">0</div>
+      <div class="stat-icon">🕌</div>
+      <div class="stat-label">مسجد تم بناؤها</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="15">0</div>
+      <div class="stat-icon">🏗️</div>
+      <div class="stat-label">مشروع جاري</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="8500">0</div>
+      <div class="stat-icon">🙌</div>
+      <div class="stat-label">متبرع</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="12">0</div>
+      <div class="stat-icon">📍</div>
+      <div class="stat-label">محافظة</div>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>
@@ -2288,6 +2380,42 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+  
+  
+  
+  
+  
+ // عدادات الإحصاءات مع تأثير أكثر سلاسة
+function animateCounters() {
+  const counters = document.querySelectorAll('.stat-number');
+  const speed = 200; // أقل سرعة للعد (كلما زاد الرقم قللت السرعة)
+  
+  counters.forEach(counter => {
+    const target = +counter.getAttribute('data-count');
+    const count = +counter.innerText;
+    const increment = target / speed;
+    
+    if (count < target) {
+      counter.innerText = Math.ceil(count + increment);
+      setTimeout(animateCounters, 1);
+    } else {
+      counter.innerText = target.toLocaleString(); // تنسيق الأرقام الكبيرة
+    }
+  });
+}
+
+// بدء العد عند ظهور القسم
+const statsSection = document.querySelector('.stats-section');
+const statsObserver = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    animateCounters();
+    statsObserver.unobserve(statsSection);
+  }
+}, { threshold: 0.5 });
+
+if (statsSection) {
+  statsObserver.observe(statsSection);
+}
   
   
   </script>
