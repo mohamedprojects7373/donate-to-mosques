@@ -12,6 +12,53 @@
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <link rel="canonical" href="https://example.com" />
   <style>
+      
+      
+      
+      @keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.project-card {
+  animation: fadeIn 0.5s ease-in-out;
+}
+      
+      
+      
+  #loadMoreBtn {
+  background: var(--main-color); /* نفس لون زر التبرع */
+  color: #01665e;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 30px auto;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+}
+
+#loadMoreBtn:hover {
+  background: var(--hover-color); /* نفس تأثير التمرير */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 83, 77, 0.15);
+}
+
+/* أيقونة + */
+#loadMoreBtn svg {
+  width: 16px;
+  height: 16px;
+}
+      
+      
+      
+      
     :root {
       --main-color: #01665e;
       --secondary-color: #028a7e;
@@ -1517,14 +1564,14 @@
         </div>
       </div>
       
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="#" class="view-all-btn" style="background: var(--accent-color); color: white; padding: 12px 24px; border-radius: var(--border-radius); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-          </svg>
-          عرض جميع المشاريع
-        </a>
-      </div>
+     <div style="text-align: center; margin-top: 30px;">
+  <button id="loadMoreBtn" style="background: var(--accent-color); color: white; padding: 12px 24px; border-radius: var(--border-radius); border: none; cursor: pointer; font-weight: 600;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+    </svg>
+    عرض المزيد من المشاريع
+  </button>
+</div>
     </div>
 
     <div class="section donation-section" id="donate">
@@ -2196,6 +2243,53 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', 'FB_PIXEL_ID');
     fbq('track', 'PageView');
+  
+  
+  
+  // عرض المزيد من المشاريع
+document.addEventListener('DOMContentLoaded', function() {
+  const projects = document.querySelectorAll('.project-card');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  let visibleCount = 4; // عدد المشاريع الظاهرة في البداية
+  const increment = 2; // عدد المشاريع الإضافية عند النقر
+
+  // إخفاء المشاريع الزائدة عن الـ 4 أولًا
+  projects.forEach((project, index) => {
+    if (index >= visibleCount) {
+      project.style.display = 'none';
+    }
+  });
+
+  // إخفاء الزر إذا كانت كل المشاريع معروضة
+  if (visibleCount >= projects.length) {
+    loadMoreBtn.style.display = 'none';
+  }
+
+  // عند النقر على الزر، عرض مشروعين إضافيين
+  loadMoreBtn.addEventListener('click', function() {
+    // حساب عدد المشاريع الجديدة التي يجب إظهارها
+    const nextVisible = visibleCount + increment;
+    
+    // إظهار المشاريع الإضافية مع تأثير fade-in
+    for (let i = visibleCount; i < nextVisible && i < projects.length; i++) {
+      if (projects[i]) {
+        projects[i].style.display = 'block';
+        projects[i].style.animation = 'fadeIn 0.5s ease-in-out';
+      }
+    }
+    
+    // تحديث العداد
+    visibleCount = nextVisible;
+    
+    // إخفاء الزر إذا تم عرض كل المشاريع
+    if (visibleCount >= projects.length) {
+      loadMoreBtn.style.display = 'none';
+    }
+  });
+});
+
+  
+  
   </script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
