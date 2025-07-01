@@ -76,7 +76,9 @@
       text-align: center;
       box-shadow: var(--box-shadow);
       position: relative;
-      overflow: hidden;
+      overflow: visable;
+      border-bottom-left-radius: 20% 10vw;
+    border-bottom-right-radius: 20% 10vw;
     }
     
     header::before {
@@ -116,106 +118,93 @@
       opacity: 0.9;
     }
     
-    .nav-container {
-      background: var(--secondary-color);
-      padding: 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
+  
+  
+  
+  
+    .header-container {
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    position: relative;
+  }
+
+  .mobile-nav-container {
+    order: 1;
+  }
+
+  .mobile-nav-btn {
+    background: var(--main-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+  }
+
+  .mobile-nav-btn:hover {
+    background: var(--hover-color);
+  }
+
+  .logo-container {
+    order: 2;
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+  }
+  
     
-    .desktop-nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .desktop-nav a {
-      color: white;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: var(--border-radius);
-      background: rgba(255,255,255,0.15);
-      transition: var(--transition);
-      font-weight: 600;
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .desktop-nav a:hover {
-      background-color: rgba(255,255,255,0.25);
-      transform: translateY(-2px);
-    }
-    
-    .desktop-nav a.active {
-      background-color: var(--hover-color);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-    
-    .mobile-nav-btn {
-      display: none;
-      background: var(--main-color);
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      border-radius: var(--border-radius);
-      font-family: 'Cairo', sans-serif;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      text-align: center;
-      transition: var(--transition);
-      margin: 0 auto;
-      max-width: 300px;
-    }
-    
-    .mobile-nav-btn:hover {
-      background: var(--hover-color);
-    }
-    
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: white;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      margin: 10px auto 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-height: 0;
-      transition: max-height 0.4s ease-out;
-      max-width: 300px;
-    }
-    
-    .mobile-nav a {
-      color: var(--text-color);
-      text-decoration: none;
-      padding: 14px 20px;
-      transition: var(--transition);
-      border-bottom: 1px solid #eee;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .mobile-nav a:hover {
-      background: var(--light-bg);
-      color: var(--main-color);
-      padding-right: 25px;
-    }
-    
-    .mobile-nav.active {
-      display: flex;
-      max-height: 500px;
-      animation: fadeIn 0.4s ease-out;
-    }
+   .mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    right: auto;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    width: 250px;
+  }
+
+  .mobile-nav.active {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .mobile-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition);
+  }
+
+  .mobile-nav a:hover {
+    background: var(--light-bg);
+    color: var(--main-color);
+    padding-right: 25px;
+  }
+  
+  
+  
+  
+  
     
     .section {
       padding: 60px 20px;
@@ -497,6 +486,8 @@
       padding: 40px 20px;
       margin-top: 60px;
       font-size: 16px;
+      border-top-left-radius: 20% 10vw;
+    border-top-right-radius: 20% 10vw;
     }
     
     .footer-content {
@@ -756,6 +747,9 @@
     }
     
     
+    
+    
+    
 .back-to-top {
   position: fixed;
   bottom: 30px;
@@ -794,59 +788,25 @@
   </style>
 </head>
 <body>
-  <header>
-     <a href="#" style="display: inline-block;">
-      <picture>
-        <source srcset="https://j.top4top.io/p_34668c0zk0.png" type="image/webp">
-        <img src="##" alt="شعار تطبيق بناء المساجد" class="logo" loading="eager">
-      </picture>
-    </a>
-    <h1>حمل تطبيق ساهم في بناء مسجد</h1>
-    <p>ساهم معنا في بناء بيوت الله من خلال هاتفك، فكل مساهمة تُعد صدقة جارية تثري ميزان حسناتك</p>
-  </header>
+     <header>
+  <div class="header-container">
+    <div class="mobile-nav-container">
+      <button class="mobile-nav-btn" id="mobileNavBtn" aria-expanded="false" aria-controls="mobileNav">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+        </svg>
+        <span>القائمة</span>
+      </button>
+    </div>
 
-  <div class="nav-container">
-    <nav class="desktop-nav">
-      <a href="#home" class="active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"></path>
-        </svg>
-        الرئيسية
-      </a>
-      <a href="#features">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
-        </svg>
-        مميزات التطبيق
-      </a>
-      <a href="#download">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
-          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
-        </svg>
-        حمل التطبيق
-      </a>
-      <a href="#faq">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
-        </svg>
-        الأسئلة الشائعة
-      </a>
-      <a href="#contact">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"></path>
-        </svg>
-        تواصل معنا
-      </a>
-    </nav>
-    
-    <button class="mobile-nav-btn" id="mobileNavBtn" aria-expanded="false" aria-controls="mobileNav">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
-      </svg>
-      القائمة
-    </button>
-    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <div class="logo-container">
+        <picture>
+          <source srcset="https://j.top4top.io/p_34668c0zk0.png" type="image/webp">
+          <img src="##" alt="شعار مبادرة بناء المساجد" class="logo" loading="eager">
+        </picture>
+    </div>    
+   
+     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
       <a href="#home">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"></path>
@@ -879,8 +839,12 @@
         تواصل معنا
       </a>
     </nav>
-  </div>
-
+    </div>
+  
+    
+    
+    
+  </header>
   <main>
     <div class="section" id="home">
       <h2>حمل التطبيق الآن وساهم في بناء بيوت الله</h2>
@@ -910,7 +874,7 @@
                 <span>Google Play</span>
               </div>
             </a>
-            
+            <!--  
             <a href="https://apk.e-droid.net/apk/app3633399-lrj6mu.apk?v=2" class="download-btn app-store">
               <img src="assets/images/app-store-badge.png" alt="متجر آبل">
               <div class="text">
@@ -918,6 +882,7 @@
                 <span>App Store</span>
               </div>
             </a>
+            <!--  -->
           </div>
         </div>
       </div>
@@ -1032,6 +997,7 @@
             <span>App Store</span>
           </div>
         </a>
+      
       </div>
     </div>
 
@@ -1064,7 +1030,7 @@
         <div class="faq-item">
           <div class="faq-question">هل التطبيق متاح لأجهزة iOS و Android؟</div>
           <div class="faq-answer">
-            <p>نعم، التطبيق متاح لكل من أجهزة أندرويد من خلال متجر جوجل بلاي، وأجهزة آيفون من خلال متجر آبل.</p>
+            <p>التطبيق متاح لكل من أجهزة أندرويد فقط من خلال متجر جوجل بلاي، وقريبا أجهزة آيفون من خلال متجر آبل.</p>
           </div>
         </div>
         
@@ -1155,7 +1121,9 @@
           <li><a href="#download">حمل التطبيق</a></li>
           <li><a href="#faq">الأسئلة الشائعة</a></li>
           <li><a href="#contact">تواصل معنا</a></li>
+          <!--  
           <li><a href="privacy.html">سياسة الخصوصية</a></li>
+          <!--  -->
         </ul>
       </div>
       
@@ -1218,43 +1186,47 @@ backToTopButton.addEventListener('click', () => {
   });
 });
       
-    const mobileNavBtn = document.getElementById('mobileNavBtn');
-    const mobileNav = document.getElementById('mobileNav');
     
-    mobileNavBtn.addEventListener('click', () => {
-      const expanded = mobileNav.classList.toggle('active');
-      mobileNavBtn.setAttribute('aria-expanded', expanded);
-      mobileNav.setAttribute('aria-hidden', !expanded);
+    
+    
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileNavBtn = document.getElementById('mobileNavBtn');
+      const mobileNav = document.getElementById('mobileNav');
       
-      if (expanded) {
-        mobileNavBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
-          </svg>
-          إغلاق
-        `;
-      } else {
-        mobileNavBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
-          </svg>
-          القائمة
-        `;
+      if (mobileNavBtn && mobileNav) {
+        mobileNavBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isExpanded = mobileNav.classList.toggle('active');
+          mobileNavBtn.setAttribute('aria-expanded', isExpanded);
+          mobileNav.setAttribute('aria-hidden', !isExpanded);
+          
+          const iconPath = isExpanded ? 
+            'M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z' : 
+            'M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z';
+          
+          mobileNavBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="${iconPath}"></path>
+            </svg>
+            <span>${isExpanded ? 'إغلاق' : 'القائمة'}</span>
+          `;
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!mobileNav.contains(e.target) && !mobileNavBtn.contains(e.target)) {
+            mobileNav.classList.remove('active');
+            mobileNavBtn.setAttribute('aria-expanded', 'false');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            mobileNavBtn.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+              </svg>
+              <span>القائمة</span>
+            `;
+          }
+        });
       }
-    });
-    
-    mobileNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.remove('active');
-        mobileNavBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
-          </svg>
-          القائمة
-        `;
-        mobileNavBtn.setAttribute('aria-expanded', 'false');
-        mobileNav.setAttribute('aria-hidden', 'true');
-      });
     });
     
     document.addEventListener('click', (e) => {
@@ -1270,6 +1242,8 @@ backToTopButton.addEventListener('click', () => {
         mobileNav.setAttribute('aria-hidden', 'true');
       }
     });
+    
+    
     
     document.querySelectorAll('.faq-question').forEach(question => {
       question.addEventListener('click', () => {
